@@ -1,7 +1,7 @@
 package com.example.Marketplace.controller;
 
 import com.example.Marketplace.entities.UserEntity;
-import com.example.Marketplace.entities.UserRepository;
+import com.example.Marketplace.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
