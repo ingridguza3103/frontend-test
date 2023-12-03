@@ -1,21 +1,15 @@
 package com.example.Marketplace.model;
 
-
-
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name="users")
 public class User {
     @Id
-    @GeneratedValue
-    private int id;
-    private String username;
-    private String pw;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+    String username;
+    String pw;
 
     public User() {
     }
@@ -48,10 +42,5 @@ public class User {
 
     public void setPw(String pw) {
         this.pw = pw;
-    }
-
-    @Override
-    public String toString() {
-        return "User [username = " + this.username + ", pw = " + this.pw + "]";
     }
 }
