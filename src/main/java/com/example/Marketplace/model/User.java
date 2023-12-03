@@ -1,19 +1,26 @@
-package com.example.Marketplace.entities;
+package com.example.Marketplace.model;
+
+
+
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-public class TestUser {
+@Table(name = "users")
+public class User {
     @Id
-    int id;
-    String username;
-    String pw;
+    @GeneratedValue
+    private int id;
+    private String username;
+    private String pw;
 
-    public TestUser() {
+    public User() {
     }
 
-    public TestUser(int id, String username, String pw) {
+    public User(int id, String username, String pw) {
         this.id = id;
         this.username = username;
         this.pw = pw;
@@ -41,5 +48,10 @@ public class TestUser {
 
     public void setPw(String pw) {
         this.pw = pw;
+    }
+
+    @Override
+    public String toString() {
+        return "User [username = " + this.username + ", pw = " + this.pw + "]";
     }
 }
