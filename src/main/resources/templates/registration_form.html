@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1 style = "text-align: center">Create a new account</h1>
-<form th:action="@{/register_user}" th:object="${user_entity}"
+<form action="/register_user" th:object="${user_entity}"
       method="post" style="text-align: center">
     <div class="form">
         <label for="username"><b>Username:</b></label>
