@@ -1,7 +1,7 @@
 package com.example.Marketplace.controller;
 
-import com.example.Marketplace.entities.UserEntity;
-import com.example.Marketplace.repositories.UserRepository;
+import com.example.Marketplace.model.User;
+import com.example.Marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,13 +25,13 @@ public class AppController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user_entity", new UserEntity());
+        model.addAttribute("user_entity", new User());
 
         return "registration_form";
     }
 
     @PostMapping("/register_user")
-    public String registerUser(UserEntity user_entity) {
+    public String registerUser(User user_entity) {
         String encodedPassword = passwordEncoder.encode(user_entity.getPw());
         System.out.println("Insert user " + user_entity.getUsername() + " with pw " + user_entity.getPw());
         user_entity.setPw(encodedPassword);
