@@ -18,10 +18,10 @@ public class AppController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("")
+    /*@GetMapping("/register")
     public String viewHomePage() {
         return "index";
-    }
+    }*/
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -31,11 +31,11 @@ public class AppController {
     }
 
     @PostMapping("/register_user")
-    public String registerUser(User user_entity) {
-        String encodedPassword = passwordEncoder.encode(user_entity.getPw());
-        System.out.println("Insert user " + user_entity.getUsername() + " with pw " + user_entity.getPw());
-        user_entity.setPw(encodedPassword);
-        userRepository.saveAndFlush(user_entity);
+    public String registerUser(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPw());
+        System.out.println("Insert user " + user.getUsername() + " with pw " + user.getPw());
+        user.setPw(encodedPassword);
+        userRepository.saveAndFlush(user);
 
         return "register_success";
     }
