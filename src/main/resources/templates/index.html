@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Marketplace</title>
@@ -15,11 +15,13 @@
 
             <label for="pw"><b>Password:</b></label>
             <input type="password" id="pw" placeholder="Enter password" required><br>
-
-            <button type="submit">Login</button>
-
+            <button type="submit"><a th:href="@{/login}">Login</a></button>
         </div>
     </form>
+    <div style="text-align: center">
+        <p>Don't have an account yet? Click "register" to create one!</p>
+        <button type="submit"><a th:href="@{/register}">Register</a></button>
+    </div>
 
 </body>
 </html>

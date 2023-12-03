@@ -1,19 +1,22 @@
 package com.example.Marketplace.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class TestUser {
+public class UserEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String username;
     String pw;
 
-    public TestUser() {
+    public UserEntity() {
     }
 
-    public TestUser(int id, String username, String pw) {
+    public UserEntity(int id, String username, String pw) {
         this.id = id;
         this.username = username;
         this.pw = pw;
