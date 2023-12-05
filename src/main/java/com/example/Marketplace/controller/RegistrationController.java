@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class AppController {
+public class RegistrationController {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,18 +25,26 @@ public class AppController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user_entity", new User());
+        model.addAttribute("user", new User());
 
         return "registration_form";
     }
 
     @PostMapping("/register_user")
-    public String registerUser(User user) {
-        String encodedPassword = passwordEncoder.encode(user.getPw());
-        System.out.println("Insert user " + user.getUsername() + " with pw " + user.getPw());
-        user.setPw(encodedPassword);
-        userRepository.saveAndFlush(user);
+    public String registerUser(User user, Model model) {
+        // check if user already exists and only save if not
+        if (!userRepository.checkUserExists(user.getUsername())) {
+            String encodedPassword = passwordEncoder.encode(user.getPw());
+            System.out.println("Insert user " + user.getUsername() + " with pw " + user.getPw());
+            user.setPw(encodedPassword);
+            userRepository.saveAndFlush(user);
+            return "register_success";
+        } else {
+            // TODO: Print username already exists to the model
+            model.addAttribute("registrationError", "Username already exists");
+            return "registration_form"; // Return to registration form with error message
+        }
 
-        return "register_success";
+
     }
 }

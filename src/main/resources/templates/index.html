@@ -8,7 +8,9 @@
 
 <h1 style = "text-align: center">Welcome to Marketplace</h1>
 <h2 style = "text-align: center">Login</h2>
+
 <form action="/login" th:object="${user}" method="post" style="text-align: center">
+    <p class="logInError" th:if="${loginError}" th:text="${loginError}" style="color: red;"></p>
     <div class="form">
         <label for="username"><b>Username:</b></label>
         <input type="text" th:field="*{username}" id="username" placeholder="Enter your username" required><br>

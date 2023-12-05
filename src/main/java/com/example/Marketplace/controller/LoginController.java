@@ -27,7 +27,7 @@ public class LoginController {
         return "index";
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@ModelAttribute  User user) {
+    public String login(@ModelAttribute  User user, Model model) {
         // Simple placeholder for now
         // Implement authentication logic here
         // TODO: check if user exists
@@ -41,11 +41,12 @@ public class LoginController {
             if (passwordEncoder.matches(user.getPw(), loginUser.getPw())) { // pw correct
                 System.out.println("PW Correct");
                 // TODO: if input correct route to homepage
-                return ResponseEntity.ok().body("{ " + user.toString() + " \"login\": true}");
+                return "login_success";
             } else { // pw incorrect
                 System.out.println("PW Incorrect");
                 // TODO: print username or password incorrect if incorrect input
-                return ResponseEntity.ok().body("{ " + user.toString() + " \"login\": false}");
+                model.addAttribute("loginError", "Username or password incorrect!");
+                return "index";
             }
 
 
@@ -53,11 +54,13 @@ public class LoginController {
         } else {
             // TODO: PRINT user does not exist
             System.out.println("USER NOT EXISTING");
+            model.addAttribute("loginError", "User does not exist");
+            return "index";
+
         }
 
 
-        // Return a JSON response indicating successful login
-        return ResponseEntity.ok().body("{ " + user.toString() + " \"login\": false}");
+
     }
 
 
