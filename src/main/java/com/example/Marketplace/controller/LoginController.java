@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/**
+ * This class handles all REST calls regarding the login
+ */
 @Controller
 public class LoginController {
 
@@ -20,11 +23,23 @@ public class LoginController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * GET request handler for login loads the login form
+     * @param model the model
+     * @return index.html
+     */
     @GetMapping("")
     public String login(Model model){
         model.addAttribute("user", new User());
         return "index";
     }
+
+    /**
+     * This method handles all POST requests and performs user authentication
+     * @param user the User object created from username and password from the login form
+     * @param model the model
+     * @return index.html if login failed, login_success.html if login succeeded
+     */
     @PostMapping("/login")
     public String login(@ModelAttribute  User user, Model model) {
         // Simple placeholder for now

@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/**
+ * This class handles all REST methods regarding the user registration
+ */
 @Controller
 public class RegistrationController {
 
@@ -23,6 +26,11 @@ public class RegistrationController {
         return "index";
     }*/
 
+    /**
+     * This method handles the GET request for the registration
+     * @param model the modle
+     * @return registration_form.html
+     */
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -30,6 +38,14 @@ public class RegistrationController {
         return "registration_form";
     }
 
+    /**
+     * This method handles all POST requests, so basically the user registration and validation
+     * if the username already exists or not
+     * @param user the User object created from the user provided input
+     * @param model the model
+     * @return registration_success.html if registration successful, registration_form.html
+     * otherwise
+     */
     @PostMapping("/register")
     public String registerUser(User user, Model model) {
         // check if user already exists and only save if not

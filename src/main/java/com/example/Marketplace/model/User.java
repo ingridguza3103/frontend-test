@@ -2,6 +2,9 @@ package com.example.Marketplace.model;
 
 import jakarta.persistence.*;
 
+/**
+ * User Entity class created with tablename users in the database
+ */
 @Entity
 @Table(name="users")
 public class User {
@@ -20,13 +23,6 @@ public class User {
         this.pw = pw;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
