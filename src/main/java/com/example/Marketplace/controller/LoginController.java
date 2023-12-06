@@ -4,7 +4,6 @@ import com.example.Marketplace.model.User;
 import com.example.Marketplace.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
 
     @Autowired
-    UserRepository userRepo;
+    UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -31,11 +30,11 @@ public class LoginController {
         // Simple placeholder for now
         // Implement authentication logic here
         // TODO: check if user exists
-        if (userRepo.checkUserExists(user.getUsername())) {
+        if (userRepository.checkUserExists(user.getUsername())) {
 
             System.out.println("USER EXISTS");
             // retrieve user from userRepo
-            User loginUser = userRepo.findByUserName(user.getUsername());
+            User loginUser = userRepository.findByUserName(user.getUsername());
 
             // authenticate user
             if (passwordEncoder.matches(user.getPw(), loginUser.getPw())) { // pw correct
