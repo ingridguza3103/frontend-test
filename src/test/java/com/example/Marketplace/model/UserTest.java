@@ -1,4 +1,4 @@
-package com.example.Marketplace.controller;
+package com.example.Marketplace.model;
 
 import com.example.Marketplace.model.User;
 import org.junit.jupiter.api.AfterEach;
