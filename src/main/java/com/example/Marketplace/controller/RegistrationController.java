@@ -35,7 +35,7 @@ public class RegistrationController {
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
 
-        return "registration_form";
+        return "index";
     }
 
     /**
@@ -58,7 +58,7 @@ public class RegistrationController {
         } else {
             // TODO: Print username already exists to the model
             model.addAttribute("registrationError", "Username already exists");
-            return "registration_form"; // Return to registration form with error message
+            return "index"; // Return to registration form with error message
         }
 
 
