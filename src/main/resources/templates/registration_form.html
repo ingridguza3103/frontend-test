@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1 style = "text-align: center">Create a new account</h1>
-<form action="/register_user" th:object="${user}"
+<form action="/register" th:object="${user}"
       method="post" style="text-align: center">
     <div class="form">
         <p class="signInError" th:if="${registrationError}" th:text="${registrationError}" style="color: red;"></p>

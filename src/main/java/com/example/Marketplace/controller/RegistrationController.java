@@ -30,7 +30,7 @@ public class RegistrationController {
         return "registration_form";
     }
 
-    @PostMapping("/register_user")
+    @PostMapping("/register")
     public String registerUser(User user, Model model) {
         // check if user already exists and only save if not
         if (!userRepository.checkUserExists(user.getUsername())) {
@@ -38,7 +38,7 @@ public class RegistrationController {
             System.out.println("Insert user " + user.getUsername() + " with pw " + user.getPw());
             user.setPw(encodedPassword);
             userRepository.saveAndFlush(user);
-            return "register_success";
+            return "registration_success";
         } else {
             // TODO: Print username already exists to the model
             model.addAttribute("registrationError", "Username already exists");
